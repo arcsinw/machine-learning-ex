@@ -43,11 +43,11 @@ s = sum(-y' * log(sigmoid(X * theta)) - (1 - y)' * log(1 - sigmoid(X * theta)));
 theta_tmp = theta;
 theta_tmp(1) = 0;
 
-J = (1 / m) * s + lambda / (2*m) * (theta_tmp' * theta_tmp);
+J = (1 / m) * s + lambda * (theta_tmp' * theta_tmp) / (2*m) ;
 
 tmp = ((sigmoid(X * theta) - y)' * X / m)';
-grad(1) = tmp(1);
-grad(2:length(tmp)) = (tmp  + (lambda / m) .* theta)(2:length(tmp));
+
+grad = (tmp  + (lambda / m) * theta_tmp);
 
 
 
